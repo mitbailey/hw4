@@ -231,6 +231,9 @@ td {
 
     /* Left justifies the text in the forms. */
     text-align: left;
+
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
 }
 
 /* Sets the styling of both form buttons, submit and clear. */
@@ -303,6 +306,27 @@ td {
     border-color: white;
     border-width: 0.1rem;
     min-width: 3rem;
+}
+
+/* ASSIGNMENT 4 */
+
+/* Styling for invalid marked fields. */
+.invalid {
+    border: 0.2em solid red;
+}
+
+/* Styling for valid marked fields. */
+.valid {
+    border: 0.2em solid green;
+}
+
+/* Styling for the invalid labels. */
+samp.invalid {
+    display: block;
+    border: none;
+    color: red;
+    font-weight: bold;
+    font-style: italic;
 }
 
 /* GENERIC CONTAINERS */

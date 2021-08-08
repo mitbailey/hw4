@@ -19,6 +19,105 @@ function collapseNavbar() {
     }
 }
 
+function submitFormValuesNoValidation() {
+    // Store the user-input values into an array.
+    var values = [document.getElementById("val1").value, document.getElementById("val2").value, document.getElementById("val3").value, document.getElementById("val4").value];
+
+    // Print the input values.
+    console.log(values);
+
+    // Convert the values to number type.
+    for (var i = 0; i < 4; i++) {
+        // Subtract one since the zeroth element is lost in the corner.
+        values[i] = Number(values[i]) - 1;
+    }
+
+    var mult_table = document.getElementById("mult-table");
+    var y_range = 0;
+    var x_range = 0;
+
+    // Clear the table, ensuring we don't pile up cells ad infinitum.
+    clearTable();
+
+    // Calculate the ranges for...
+    // Y-Axis
+    if (values[2] < values[3]) { // If y-axis is least to greatest...
+        y_range = values[3] - values[2];
+    }
+    else if (values[2] > values[3]) { // ...greatest to least...
+        y_range = values[2] - values[3];
+    }
+    // ...or equivalent (0 by default).
+
+    // X-Axis
+    if (values[0] < values[1]) { // If x-axis is least to greatest...
+        x_range = values[1] - values[0];
+    }
+    else if (values[0] > values[1]) { // ...greatest to least...
+        x_range = values[0] - values[1];
+    }
+    // ...or equivalent (0 by default).
+
+    // Print the ranges.
+    console.log("y_range: ", y_range);
+    console.log("x_range: ", x_range);
+
+    // To make the range inclusive (ie from "0 to 10" is 11 numbers, which is (10 - 0) + 1).
+    x_range += 2;
+    y_range += 2;
+
+    // Print the adjusted ranges.
+    console.log("y_range (ADJ): ", y_range);
+    console.log("x_range (ADJ): ", x_range);
+
+    // Here we fill in all of the cells of the table by using a nested for-loop.
+    // First we create and then fill in the value for each cell.
+    for (var i = 0; i < y_range; i++) {
+        // Add a row for each value of y_range.
+        mult_table.appendChild(document.createElement("tr"));
+
+        // Add the cells for each row.
+        for (var ii = 0; ii < x_range; ii++) {
+
+            // Check if a cell should be a header or is the top left corner.
+            if (i == 0 && ii == 0) { // The top left corner.
+                mult_table.children[i].appendChild(document.createElement("td"));
+            }
+            else if (i == 0) { // Header row.
+                mult_table.children[i].appendChild(document.createElement("th"));
+
+                // Also check if the values are least to greatest or greatest to least.
+                if (values[0] > values[1]) {
+                    mult_table.children[i].children[ii].textContent = values[0] - ii + 2;
+                }
+                else {
+                    mult_table.children[i].children[ii].textContent = ii + values[0];
+                }
+            }
+            else if (ii == 0) { // Header column.
+                mult_table.children[i].appendChild(document.createElement("th"));
+
+                if (values[2] > values[3]) {
+                    mult_table.children[i].children[ii].textContent = values[2] - i + 2;
+                }
+                else {
+                    mult_table.children[i].children[ii].textContent = i + values[2];
+                }
+            }
+            else { // In the table body.
+                mult_table.children[i].appendChild(document.createElement("td"));
+
+                if (values[0] > values[1]) {
+                    mult_table.children[i].children[ii].textContent = (values[0] - ii + 2) * (values[2] - i + 2);
+                }
+                else {
+                    mult_table.children[i].children[ii].textContent = (ii + (values[0])) * (i + (values[2]));
+                }
+            }
+        }
+    }
+}
+
 function submitFormValues() {
     /**
      * values[0] - x-axis start
