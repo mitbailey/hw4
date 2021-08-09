@@ -9,11 +9,22 @@
  * @copyright Copyright (c) 2021
  */
 
+/**
+ * @brief Sets validation rules, messages, and behaviours.
+ * 
+ * Sets the rules, messages, and behaviours for all four text fields. On submission, the sliders are moved to sync.
+ * Warns if values are too high or low, prohibiting their entry (a downgrade from my previously manual method of error-
+ * catching), and outlines the text-field in red while also displaying a red, bold error message adjacent to the
+ * offending field.
+ * 
+ */
 $('.dynamic-table-form-set').validate({
     debug: false,
     rules: {
         val1: {
+            // This field must be filled in.
             required: true,
+            // Sets the minimum and maximum allowable values.
             min: -64,
             max: 64,
         },
@@ -35,6 +46,7 @@ $('.dynamic-table-form-set').validate({
     },
     messages: {
         val1: {
+            // Overrides the default error messages for these errors.
             required: "Enter a value.",
             min: "Value too low (-64 to 64).",
             max: "Value too high (-64 to 64).",
@@ -55,16 +67,22 @@ $('.dynamic-table-form-set').validate({
             max: "Value too high (-64 to 64).",
         },
     },
+    // Helps with placement of the messages so that they don't push things around.
     errorPlacement: function(error, element) {
         error.insertBefore(element);
     },
+    // Adds the class "invalid" to errored objects.
     errorClass: "invalid",
+    // Adds the class "valid" to errored objects (allows us to place the green box).
     validClass: "valid",
+    // Makes the error-text use a <samp> element, which gives it a nice text look. Also I never use <samp> so really it just works out.
     errorElement: "samp",
     errorLabel: "error_label",
+    // This is fired when things are invalid, just for debugging more or less.
     invalidHandler: function (form) {
         console.log("Invalid handler.");
     },
+    // When a valid submission goes through, we update all the sliders to match the text fields and then call our good-old submitFormValues() function - but slightly modified so that none of my previous validation is happening within it.
     submitHandler: function (form) {
         console.log("Submitted!");
         submitFormValuesNoValidation();

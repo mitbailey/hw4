@@ -1,42 +1,36 @@
-## Homework Assignment 3  
-  
-The file can be found at  
-https://github.com/mitbailey/hw3/blob/master/index.html  
-  
-The repository can be found at
-https://github.com/mitbailey/hw3  
-  
-The containing folder can be found at  
-https://github.com/mitbailey/hw3  
-  
-The webpage can be found at  
-https://mitbailey.github.io/hw3/  
+# Homework Assignment 4 Part 1
+## Notes
+___
 
-The simple example found in requirement 10 under the "What You Are To Do" section was not viewed. 
-  
-The headers use "position: sticky;" styling to stay visible when scrolling.   
+jQuery Validation now stops the user from entering values greater than 64 or less than -64 (this is a step backwards from my previous implementation, which could catch this and correct it).
 
-CSS styling for Assignment 3 begins under the 'PAGE SPECIFIC FORMATTING' section, and is labeled 'ASSIGNMENT 3'.  
-### This is at line 215.  
+Custom Validation messages are displayed directly above the offending text input field(s), and provide an indication of how to fix the issue. The offending text input field(s) are also outlined in red.
 
-CSS:  
-https://github.com/mitbailey/hw3/blob/master/css/style.css  
+Green boxed input fields indicate valid entries.
 
-JavaScript:  
-https://github.com/mitbailey/hw3/blob/master/src/script.js  
+Page never reloads, its not necessary.
+___
+## Links
+_Repository_
 
-### Error Handling
-Value Invalid  
-If the value is text or NULL, an error message, "Invalid value!," will appear under the offending box(es).  
+https://github.com/mitbailey/hw4
 
-Value Out of Bounds  
-If the value is too large or small, it is clamped to a maximum of 64 or a minimum of -64.  
+_GitHub Pages_
 
-Positive & Negative  
-Values can be either positive or negative.  
+https://mitbailey.github.io/hw4/
 
-Table Too Large  
-The table always fits within the main area of the page. The user is presented with scrollbars to navigate the table when necessary.  
+_JavaScript_
 
-Axis Ordering  
-Axes can be ordered from greatest to least or least to greatest, it works either way.  
+https://github.com/mitbailey/hw4/blob/master/src/script.js
+
+_CSS (see lines 311-330)_
+
+https://github.com/mitbailey/hw4/blob/master/css/style.css
+___
+
+## References
+https://www.w3schools.com/
+
+https://api.jqueryui.com/
+
+https://jqueryvalidation.org/  
